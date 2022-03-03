@@ -7,7 +7,7 @@ var browserstack = require('browserstack-local');
 var bs_local = new browserstack.Local();
 
 // replace <browserstack-accesskey> with your key. You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
-var bs_local_args = { 'key': 'AXHzyg34Qr81Nep231pu' };
+var bs_local_args = { 'key': ACCESS_KEY };
 
 // starts the Local instance with the required arguments
 bs_local.start(bs_local_args, function() {
@@ -16,16 +16,20 @@ bs_local.start(bs_local_args, function() {
   console.log(bs_local.isRunning());
   runTestWithCaps(); 
 });
-
 // Input capabilities
-const capabilities = {
-    'device' : 'iPhone 11',
-    'realMobile' : 'true',
-    'os_version' : '14.0',
-    'browserName' : 'iPhone',
-    'browserstack.local' : 'true',
-    'name': 'BStack-[NodeJS] Sample Test', // test name
-    'build': 'BStack Build Number 1' // CI/CD job or build name
+var capabilities = {
+	'bstack:options' : {
+		"os" : "OS X",
+		"osVersion" : "Sierra",
+		"buildName" : "Final-Snippet-Test",
+		"sessionName" : "Selenium-4 Nodejs snippet test",
+		"local" : "true",
+		"seleniumVersion" : "4.0.0",
+		"userName" : "USER_NAME",
+		"accessKey" : "ACCESS_KEY",
+	},
+	"browserName" : "Chrome",
+	"browserVersion" : "latest",
 }
 
 async function runTestWithCaps () {
